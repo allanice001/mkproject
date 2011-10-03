@@ -54,7 +54,7 @@ def mkproject(type, name, basedir=None):
     # replace project variables
     for (search, replace) in vars.iteritems():
         for filename in files:
-            os.popen("sed -i '' 's/${%s}/%s/g' %s" % (search, replace, filename)).read()
+            os.popen("sed 's/${%s}/%s/g' %s -i" % (search, replace, filename)).read()
 
     # run post-installation commands
     for cmd in getattr(conf, 'post_commands', ()):
