@@ -1,4 +1,11 @@
 #!/usr/bin/env python2.7
+import os, sys
+
+# Support zipped packages.
+package_dir = "zip-packages"
+if os.path.isdir(package_dir):
+    [sys.path.insert(0, "%s/%s" % (package_dir, filename)) for filename in os.listdir(package_dir) if filename.endswith((".zip", ".egg"))]
+
 from django.core.management import execute_manager
 try:
     import settings # Assumed to be in the same directory.
